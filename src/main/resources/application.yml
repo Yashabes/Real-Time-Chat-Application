@@ -1,0 +1,22 @@
+spring:
+  datasource:
+    url: jdbc:h2:mem:RealTimeChatApp
+    driver-class-name: org.h2.Driver
+    username: sr
+    password: password
+
+  jpa:
+    database-platform: org.hibernate.dialect.H2Dialect
+    hibernate:
+      ddl-auto: create-drop
+    show-sql: true
+  h2:
+    console:
+      enabled: true
+
+jwt:
+  secret: "This is a super secret random key"
+  expiration: 3600000
+
+server:
+  port: 8081

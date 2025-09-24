@@ -8,6 +8,8 @@ import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.Optional;
+
 @Repository
 public interface UserRepository extends JpaRepository<User,Long> {
     boolean existsByUsername(String username);
@@ -15,4 +17,7 @@ public interface UserRepository extends JpaRepository<User,Long> {
     @Modifying
     @Query("UPDATE User u SET u.isOnline= :isOnline WHERE u.username= :username")
     void updateUserOnlineStatus(@Param("username") String username, @Param("isOnline") boolean isOnline);
+
+    boolean existsByEmail(String email);
+    Optional<User> findByUsername(String username);
 }

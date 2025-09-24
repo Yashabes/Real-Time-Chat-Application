@@ -7,10 +7,10 @@ import org.springframework.stereotype.Service;
 @Service
 @RequiredArgsConstructor
 public class UserService {
-    private final UserRepository userRepository;
+    UserRepository userRepository;
 
-    public boolean userExists(String sender) {
-        return userRepository.existsByUsername(sender);
+    public boolean userExists(String username) {
+        return userRepository.existsByUsername(username);
     }
 
     public void setUserOnlineStatus(String username, boolean isOnline) {
