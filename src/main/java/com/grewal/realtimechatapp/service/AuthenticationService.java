@@ -5,6 +5,7 @@ import com.grewal.realtimechatapp.dtos.LoginResponseDTO;
 import com.grewal.realtimechatapp.dtos.RegisterRequestDTO;
 import com.grewal.realtimechatapp.dtos.UserDTO;
 import com.grewal.realtimechatapp.jwt.JwtService;
+import com.grewal.realtimechatapp.miscellaneous.Role;
 import com.grewal.realtimechatapp.model.User;
 import com.grewal.realtimechatapp.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
@@ -35,6 +36,7 @@ public class AuthenticationService {
         user.setUsername(registerRequestDTO.getUsername());
         user.setEmail(registerRequestDTO.getEmail());
         user.setPassword(passwordEncoder.encode(registerRequestDTO.getPassword()));
+        user.setRole(Role.ROLE_USER);
         userRepository.save(user);
 
         return "User registered successfully";

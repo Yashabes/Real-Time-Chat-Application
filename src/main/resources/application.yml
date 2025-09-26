@@ -1,22 +1,16 @@
 spring:
   datasource:
-    url: jdbc:h2:mem:RealTimeChatApp
-    driver-class-name: org.h2.Driver
-    username: sr
-    password: password
-
+    url: jdbc:mysql://localhost:3306/RealTimeChatApp
+    username: root
+    password: Virendra@123
+    driver-class-name: com.mysql.cj.jdbc.Driver
   jpa:
-    database-platform: org.hibernate.dialect.H2Dialect
+    database-platform: org.hibernate.dialect.MySQL8Dialect
     hibernate:
-      ddl-auto: create-drop
+      ddl-auto: update
     show-sql: true
-  h2:
-    console:
-      enabled: true
-
 jwt:
-  secret: "This is a super secret random key"
+  secretkey: zH5kF#nM9$aW2xS4yU7vB3jR8qL6tC1d
   expiration: 3600000
-
 server:
   port: 8081
