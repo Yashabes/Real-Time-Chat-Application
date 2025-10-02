@@ -55,7 +55,7 @@ public class ChatController {
         }
         return null;
     }
-    @MessageMapping("chat.sendPrivateMessage")
+    @MessageMapping("/chat.sendPrivateMessage")
     public void sendPrivateMessage(@Payload ChatMessage chatMessage,  SimpMessageHeaderAccessor messageHeader){
         if(userService.userExists(chatMessage.getSender()) && userService.userExists(chatMessage.getReceiver())) {
             if(chatMessage.getContent() == null) {
@@ -69,11 +69,11 @@ public class ChatController {
             System.out.println("Message Saved Successfully" + chatMessage.getId());
 
             try {
-                String receiverDestination = "/user" + chatMessage.getReceiver() + "/queue/private";
+                String receiverDestination = "/user/" + chatMessage.getReceiver() + "/queue/private";
                 System.out.println("Sending Message To Receiver" + receiverDestination);
                 messagingTemplate.convertAndSend(receiverDestination, savedMessage);
 
-                String senderDestination = "/user" + chatMessage.getSender() + "/queue/private";
+                String senderDestination = "/user/" + chatMessage.getSender() + "/queue/private";
                 System.out.println("Sending Message To Sender" + senderDestination);
                 messagingTemplate.convertAndSend(senderDestination, savedMessage);
             }

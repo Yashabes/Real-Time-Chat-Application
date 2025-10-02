@@ -33,7 +33,8 @@ public class AuthController {
 
         ResponseCookie responseCookie = ResponseCookie.from("JWT", loginResponseDTO.getToken())
                 .httpOnly(true)
-                .secure(true)
+                .secure(false)
+                .sameSite("Lax")
                 .path("/")
                 .maxAge(60 * 60)
                 .build();

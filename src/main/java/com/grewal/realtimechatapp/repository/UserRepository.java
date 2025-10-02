@@ -8,6 +8,7 @@ import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
 import java.util.Optional;
 
 @Repository
@@ -20,4 +21,9 @@ public interface UserRepository extends JpaRepository<User,Long> {
 
     boolean existsByEmail(String email);
     Optional<User> findByUsername(String username);
+    
+    List<User> findByIsOnlineTrue();
+    
+    @Query("SELECT u FROM User u WHERE u.isOnline = true")
+    List<User> findAllOnlineUsers();
 }
